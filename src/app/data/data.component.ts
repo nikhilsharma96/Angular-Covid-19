@@ -65,7 +65,7 @@ sortBy(value) {
      this.asc = true;
    }
    this.prevSortedBy = value;
-   this.sortByTests(value);
+   this.sortByField(value);
  }
 
  sortByField(value) {

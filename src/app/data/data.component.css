@@ -1,0 +1,148 @@
+.jumbotron{
+    margin: 5px 0px 5px 0px;
+    align-items: center;
+    /* width: ; */
+    /* display: inline-flex; */
+}
+.card{
+    /* display: inline-flex; */
+    flex-wrap: nowrap;  
+    border: 0px;
+    }
+
+.card-header{
+    /* background-color: white; */
+    border: 0px;
+    
+}    
+
+/* Extra small devices (phones, up to 767px) */
+@media only screen 
+  and (min-device-width: 320px) 
+  and (max-device-width: 480px)
+  and (-webkit-min-device-pixel-ratio: 2)
+ {
+    .card-header{
+        font-size: 10px;
+            display: inline-flex; 
+            flex-wrap: nowrap;
+        /* align-self: center; */
+    }
+    button,.cardtag{font-size: 10px;
+    }
+    .card{
+          display: inline-flex; 
+            flex-wrap: nowrap;
+        min-height: 9rem;
+        width: 5rem;
+        /* padding-right: 10px; */
+    }
+    .row .col-3{
+        width: 25%;
+        /* padding-right: inherit; */
+        /* padding-left: 5px; */
+    }
+ }
+
+
+ @media (min-width: 480px) and (max-width: 767px){
+    button,.cardtag{font-size: 12px;
+    }
+    .card-header{
+        display: inline-flex; 
+        flex-wrap: nowrap;
+        align-items: center;
+        border-color: inherit;
+    }   
+    .card{
+        display: inline-flex;
+        flex-wrap: nowrap;
+        /* align-items: stretch; */
+        min-height: 9rem;
+        width: 10em;
+    }
+    .cardtag{
+        margin-right: 5px;
+    }
+ }  
+/* Small devices (tablets, 768px and up) */
+@media (min-width: 768px) and (max-width: 939px) {
+    .cardtag{font-size: 16px;
+    }
+    .jumbotron{
+        align-items: center;
+        /* display: inline-flex; */
+    }
+    .card-header{
+        display: inline-flex; 
+        flex-wrap: nowrap;
+        padding-left: 40px;
+    }
+    .card{
+        display: inline-flex;
+        flex-wrap: nowrap;
+        min-height: 9rem;
+        width: 10em;
+    }
+    .card-body{
+        padding-left: 40px;
+    }
+    .cardtag{
+        margin-right: 5px;
+    }
+}
+ 
+ /* tablets/desktops and up ----------- */
+@media (min-width: 940px) and (max-width: 1199px) {
+    .cardtag{font-size: 20px;
+        
+    /* margin-left: 50px; */
+    }
+    .card-body{
+        padding-left: 40px;
+    }
+    .cardtag{
+        margin-right: 5px;
+    }
+    .card-header{
+        display: inline-flex; 
+        flex-wrap: nowrap;
+        padding-left: 40px;
+    }
+    .card{
+        display: inline-flex;
+        flex-wrap: nowrap;
+        min-height: 9rem;
+        width: 10em;
+    }
+ }
+ 
+
+ /* large desktops and up ----------- */
+@media (min-width: 1200px) {
+    .cardtag{font-size: 22px;   
+        /* margin-left: 50px; */
+    }
+    .cardtag{
+        margin-right: 5px;
+    }
+    .card-header{
+        display: inline-flex; 
+        flex-wrap: nowrap;
+        padding-left: 3em;
+    }
+    .card{
+        display: inline-flex;
+        flex-wrap: nowrap;
+        min-height: 10rem;
+        width: 12em;
+    }
+    .card-body{
+        padding-left: 3em;
+    }
+ }
+ 
+td{
+    max-width: 110px;
+    text-align: justify;
+}

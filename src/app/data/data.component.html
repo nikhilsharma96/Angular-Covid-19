@@ -1,0 +1,159 @@
+<div class="container" style="background-color:whitesmoke">
+    <div class="row" >
+      <div class="col-12">
+        <div class="jumbotron" >       
+          <h1 class="text-center">Covid 19 India</h1>
+    </div>
+  </div>
+</div>
+<div class="row cardtag" style="padding-bottom: 5px;max-width:fit-content;">
+  <div class="col-3 " >
+    <div class="card border-light" style="background-color:rgba(255, 215, 0, 0.5);">
+      <div class="card-header" >Confirmed</div>
+      <div class="card-body" >
+        {{temp1['0'].confirmed}}
+        <span class="badge badge-warning" [hidden]="temp1['0'].deltaconfirmed===0"><i class="fa fa-arrow-up" aria-hidden="true"></i>
+          {{temp1['0'].deltaconfirmed}}</span>
+       </div>
+    </div>
+  </div>
+    <div class="col-3" >
+      <div class="card border-light" style="background-color:rgba(205, 92, 92,0.2);">
+        <div class="card-header">Active</div>
+        <div class="card-body" >
+          {{temp1['0'].active}}
+        </div>
+      </div>
+    </div>
+      <div class="col-3">
+        <div class="card border-light"  style="background-color:rgba(135, 230, 106, 0.5);">
+          <div class="card-header">Recovered</div>
+          <div class="card-body" >
+            {{temp1['0'].recovered}}
+            <span class="badge badge-success" [hidden]="temp1['0'].deltarecovered===0"><i class="fa fa-arrow-up" aria-hidden="true"></i>
+              {{temp1['0'].deltarecovered}}</span>
+          </div>
+        </div>
+  </div>
+  <div class="col-3">
+    <div class="card border-light" style="background-color:rgba(255, 0, 0, 0.5);">
+      <div class="card-header" >Deceased</div>
+      <div class="card-body" >
+        {{temp1['0'].deaths}}
+        <span class="badge badge-danger" [hidden]="temp1['0'].deltadeaths===0"><i class="fa fa-arrow-up" aria-hidden="true"></i>
+          {{temp1['0'].deltadeaths}}</span>
+      </div>
+    </div>
+</div>
+</div>
+
+<div class="row">   
+  <div class="col-12">
+    <div class="table-responsive">
+      <table class="table table-bordered table-hover"  data-sort-name="states"  data-sort-order="desc">
+          <thead><tr>
+            <th >
+              <button (click)="sortBy('state')" class="btn">
+                <b>States/UT</b>
+                <i *ngIf="asc && prevSortedBy == 'state'" class="fa fa-fw fa-sort-up" ></i>
+                <i *ngIf="!asc && prevSortedBy == 'state'"  class="fa fa-fw fa-sort-down" ></i>
+              </button>
+            </th>
+            <th>
+              <button (click)="sortBy('confirmed')" class="btn">
+                <b>Confirmed</b>
+                <i *ngIf="asc && prevSortedBy == 'confirmed'" class="fa fa-fw fa-sort-up" ></i>
+                <i *ngIf="!asc && prevSortedBy == 'confirmed'"  class="fa fa-fw fa-sort-down" ></i>
+              </button>
+            </th>
+            <th>
+              <button (click)="sortBy('active')" class="btn">
+                <b>Active</b>
+                <i *ngIf="asc && prevSortedBy == 'active'" class="fa fa-fw fa-sort-up" ></i>
+                <i *ngIf="!asc && prevSortedBy == 'active'"  class="fa fa-fw fa-sort-down" ></i>
+              </button>
+            </th>
+            <th>
+              <button (click)="sortBy('recovered')" class="btn">
+                <b>Recovered</b>
+                <i *ngIf="asc && prevSortedBy == 'recovered'" class="fa fa-fw fa-sort-up" ></i>
+                <i *ngIf="!asc && prevSortedBy == 'recovered'"  class="fa fa-fw fa-sort-down" ></i>
+              </button>
+            </th>
+            <th>
+              <button (click)="sortBy('deaths')" class="btn">
+                <b>Deceased</b>
+                <i *ngIf="asc && prevSortedBy == 'deaths'" class="fa fa-fw fa-sort-up" ></i>
+                <i *ngIf="!asc && prevSortedBy == 'deaths'"  class="fa fa-fw fa-sort-down" ></i>
+              </button>
+            </th>
+            <th>
+              <button (click)="sortBy('test')" class="btn" class="btn">
+                <b>Tested</b>
+                <i *ngIf="asc && prevSortedBy == 'test'" class="fa fa-fw fa-sort-up" ></i>
+                <i *ngIf="!asc && prevSortedBy == 'test'"  class="fa fa-fw fa-sort-down" ></i>
+            </button>
+          </th>
+          </tr></thead>
+          <tbody >
+            <ng-container *ngFor="let item of temp1 | slice:1;">
+            <tr  *ngFor= " let state of testArray | keyvalue">
+            <ng-container  *ngIf="item.statecode==state.value.statecode || item.state==!'Total'">
+              
+            <td (click)="expandMe(item.statecode);" style="cursor:pointer">{{ item.state }}</td>
+            <td >{{item.confirmed}}
+              <span class="badge badge-warning" [hidden]="item.deltaconfirmed==0"><i class="fa fa-arrow-up" aria-hidden="true"></i>
+                {{item.deltaconfirmed}}</span>
+            </td>
+            <td >{{item.active}}</td>
+
+            <td >{{item.recovered}}
+              <span class="badge badge-success" [hidden]="item.deltarecovered==0"><i class="fa fa-arrow-up" aria-hidden="true"></i>
+                {{item.deltarecovered}}</span>
+            </td>
+
+            <td >{{item.deaths}}
+              <span class="badge badge-danger" [hidden]="item.deltadeaths==0"><i class="fa fa-arrow-up" aria-hidden="true"></i>
+                {{item.deltadeaths}}</span>
+            </td>
+      
+            <td > {{state.value.tested}}
+              <!-- <span class="badge badge-danger" [hidden]="item.deltadeaths==0"><i class="fa fa-arrow-up" aria-hidden="true">{{state.value.meta}}</i>
+               </span> -->
+            </td>
+          </ng-container>
+          </tr>
+          <tr *ngIf="expandMe" app-district-wise> </tr>
+        </ng-container>
+          <tr>
+            <td >India</td>
+
+            <td >{{temp1['0'].confirmed}}
+              <span class="badge badge-warning" [hidden]="temp1['0'].deltaconfirmed==0"><i class="fa fa-arrow-up" aria-hidden="true"></i>
+                {{temp1['0'].deltaconfirmed}}</span>
+            </td>
+
+            <td >{{temp1['0'].active}}</td>
+
+            <td >{{temp1['0'].recovered}}
+              <span class="badge badge-warning" [hidden]="temp1['0'].deltarecovered==0"><i class="fa fa-arrow-up" aria-hidden="true"></i>
+                {{temp1['0'].deltarecovered}}</span>
+            </td>
+
+            <td >{{temp1['0'].deaths}}
+              <span class="badge badge-warning" [hidden]=" temp1['0'].deaths==0"><i class="fa fa-arrow-up" aria-hidden="true"></i>
+                {{temp1['0'].deaths}}</span>
+            </td>
+
+            <td >{{testedTotal.totalsamplestested}}
+              <span class="badge badge-warning" [hidden]="temp1['0'].deltaconfirmed==0"><i class="fa fa-arrow-up" aria-hidden="true"></i>
+                {{testedTotal.samplereportedtoday}}</span>
+            </td>
+            
+        </tr>    
+        </tbody>        
+       </table>
+      </div>
+    </div>
+  </div>
+</div>

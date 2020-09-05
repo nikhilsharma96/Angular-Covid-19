@@ -1,0 +1,116 @@
+<div class="container" style="background-color:whitesmoke">
+  <div class="row" >
+    <div class="col-12">
+      <div class="jumbotron" >
+        <h1 class="text-center">Covid 19 India</h1>
+    </div>
+  </div>
+</div>
+
+<div class="row cardtag" >
+  <div class="col-3 " >
+    <div class="card border-light" style="background-color:rgba(255, 215, 0, 0.5);">
+      <div class="card-header">Confirmed</div>
+      <div class="card-body" >
+        {{temproary.confirmed}}
+        <span class="badge badge-warning" [hidden]="temproary.deltaconfirmed==0"><i class="fa fa-arrow-up"  aria-hidden="true"></i>
+          {{temproary.deltaconfirmed}}</span>
+      </div>
+    </div>
+  </div>
+    <div class="col-3" >
+      <div class="card border-light" style="background-color:rgba(205, 92, 92,0.2);">
+        <div class="card-header">Active</div>
+        <div class="card-body">
+          {{temproary.active}}
+        </div>
+      </div>
+    </div>
+      <div class="col-3">
+        <div class="card border-light" style="background-color:rgba(135, 230, 106, 0.5);">
+          <div class="card-header">Recovered</div>
+          <div class="card-body">
+            {{temproary.recovered}}
+            <span class="badge badge-success" [hidden]="temproary.deltarecovered==0"><i class="fa fa-arrow-up" aria-hidden="true"></i>
+              {{temproary.deltarecovered}}</span>
+          </div>
+        </div>
+  </div>
+  <div class="col-3">
+    <div class="card border-light" style="background-color:rgba(255, 0, 0, 0.5);">
+      <div class="card-header">Deceased</div>
+      <div class="card-body">
+        {{temproary.deaths}}
+        <span class="badge badge-danger" [hidden]="temproary.deltadeaths==0"><i class="fa fa-arrow-up" aria-hidden="true"></i>
+          {{temproary.deltadeaths}}</span>
+      </div>
+    </div>
+</div>
+</div>
+
+<div class="row">   
+  <div class="col-12">
+    <div class="table-responsive">
+      <table class="table  table-bordered table-hover fadeInUp " >
+          <thead><tr >
+
+            <th ><button class="btn">
+                <b>States/UT</b><i class="fa fa-fw fa-sort" ></i>
+            </button></th>
+
+            <th  ><button class="btn" >
+                <b>Confirmed</b></button></th>
+
+            <th  ><button class="btn" >
+              <b>Active</b>
+            </button></th>
+
+            <th  ><button class="btn"  >
+              <b>Recovered</b>
+            </button></th>
+
+            <th  ><button class="btn">
+              <b>Deceased</b>
+            </button></th>
+
+            <th ><button class="btn">
+              <b>Tested</b><i class="fa fa-fw fa-sort"></i>
+            </button></th>
+
+          </tr></thead>
+          <tbody >            
+            
+            <ng-container *ngFor="let test of testResult | keyvalue ">
+            <tr   *ngFor="let item of result | keyvalue ">
+              <ng-container *ngIf="item.key == test.key">
+            
+              <td >{{ item.key }}</td>
+
+              <td >{{item.value.confirmed}}
+              <span class="badge badge-warning" [hidden]="item.value.delta.confirmed==0"><i class="fa fa-arrow-up" aria-hidden="true"></i>
+                {{item.value.delta.confirmed}}</span></td>
+            
+              <td >{{item.value.active}}</td>
+            
+              <td >{{item.value.recovered}}
+              <span class="badge badge-success" [hidden]="item.value.delta.recovered==0"><i class="fa fa-arrow-up" aria-hidden="true"></i>
+                {{item.value.delta.recovered}}</span></td>
+              
+              <td >{{item.value.deceased}}
+                <span class="badge badge-danger" [hidden]="item.value.delta.deceased==0"><i class="fa fa-arrow-up" aria-hidden="true"></i>
+                  {{item.value.delta.deceased}}</span></td>
+
+              <td >{{test.value.total.tested}}</td>
+              
+              <td >{{test.value.meta.population}}</td>
+
+              
+              </ng-container>
+          </tr>
+        </ng-container>
+        </tbody>                         
+       </table>
+      </div>
+    </div>
+  </div>
+</div>
